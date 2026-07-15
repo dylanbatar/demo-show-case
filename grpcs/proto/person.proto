@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package persons;
+
+option go_package = "github.com/dylanbatar/demo-show-case/grpcs/proto";
+
+message Person {
+  string id = 1;
+  string name = 2;
+  string language = 3;
+  string bio = 4;
+  float version = 5;
+}
+
+message PersonRequest {
+  repeated Person persons = 1;
+}
+
+message PersonResponse {
+  string processed  = 1;
+}
+
+service UploadService {
+  rpc Upload(PersonRequest) returns (stream PersonResponse) {}
+}
